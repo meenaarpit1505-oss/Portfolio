@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="24" fill="#18181b"/>
+  <polygon points="64,28 102,50 102,94 64,116 26,94 26,50" fill="none" stroke="#4ADE80" stroke-width="8" stroke-linejoin="round"/>
+  <text x="64" y="80" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="28" text-anchor="middle">node</text>
+</svg>
