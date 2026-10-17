@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { budgetOptions, projectTypeOptions, timelineOptions } from "@/data/site";
-import { EMAIL } from "@/lib/config";
+import { EMAIL, FORMSPREE_ENDPOINT, getInquiryMailto } from "@/lib/config";
 import { tween } from "@/lib/motion";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState, type FormEvent } from "react";
@@ -11,6 +11,16 @@ const fieldClass =
   "w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
 const steps = ["Project type", "Budget", "Timeline", "Details"] as const;
+const SUCCESS_MESSAGE = "Thanks! I'll reply within 24 hours.";
+const EMAIL_PATTERN =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+
+function optionLabel(
+  options: readonly { value: string; label: string }[],
+  value: string,
+) {
+  return options.find((option) => option.value === value)?.label ?? value;
+}
 
 function ChipGroup({
   legend,
@@ -63,6 +73,7 @@ export function ContactForm() {
   const [projectType, setProjectType] = useState("");
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
+  const [fallbackMailto, setFallbackMailto] = useState(`mailto:${EMAIL}`);
 
   function canContinue() {
     if (step === 0) return Boolean(projectType);
@@ -80,35 +91,77 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     const data = new FormData(form);
-    setStatus("loading");
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const details = String(data.get("message") ?? "").trim();
+    const honeypot = String(data.get("_gotcha") ?? "").trim();
+    const projectTypeLabel = optionLabel(projectTypeOptions, projectType);
+    const budgetLabel = optionLabel(budgetOptions, budget);
+    const timelineLabel = optionLabel(timelineOptions, timeline);
+    const mailto = getInquiryMailto({
+      projectType: projectTypeLabel,
+      budget: budgetLabel,
+      timeline: timelineLabel,
+      name,
+      email,
+      message: details,
+    });
+
+    setFallbackMailto(mailto);
     setMessage("");
 
+    if (honeypot) {
+      setStatus("success");
+      setMessage(SUCCESS_MESSAGE);
+      form.reset();
+      return;
+    }
+
+    if (!email || !EMAIL_PATTERN.test(email) || email.length > 120) {
+      setStatus("error");
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
+    if (!FORMSPREE_ENDPOINT) {
+      if (mailto.startsWith(`mailto:${EMAIL}?`)) {
+        const link = document.createElement("a");
+        link.href = mailto;
+        link.rel = "noopener";
+        link.click();
+      }
+      return;
+    }
+
+    setStatus("loading");
+
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          budget,
-          projectType,
-          timeline,
-          message: data.get("message"),
-          website: data.get("website"),
+          name,
+          email,
+          message: details,
+          projectType: projectTypeLabel,
+          budget: budgetLabel,
+          timeline: timelineLabel,
         }),
       });
-      const payload = (await response.json()) as { error?: string; message?: string };
       if (!response.ok) {
         setStatus("error");
-        setMessage(payload.error || "Something went wrong. Please email me directly.");
+        setMessage("Something went wrong.");
         return;
       }
       setStatus("success");
-      setMessage(payload.message || "Thanks — I’ll reply within 24 hours.");
+      setMessage(SUCCESS_MESSAGE);
       form.reset();
     } catch {
       setStatus("error");
-      setMessage(`Network error. Please email ${EMAIL}.`);
+      setMessage("Something went wrong.");
     }
   }
 
@@ -217,6 +270,7 @@ export function ContactForm() {
               name="email"
               type="email"
               required
+              maxLength={120}
               autoComplete="email"
               className={`${fieldClass} mt-2`}
             />
@@ -236,7 +290,10 @@ export function ContactForm() {
       ) : null}
 
       <div className="hidden" aria-hidden="true">
-        <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+        <label>
+          Company website
+          <input name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
+        </label>
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-3">
@@ -261,9 +318,12 @@ export function ContactForm() {
         </Button>
       </div>
 
-      {message && status === "error" ? (
+      {status === "error" ? (
         <p role="status" className="mt-4 text-sm text-red-400">
-          {message}
+          {message}{" "}
+          <a href={fallbackMailto} className="underline underline-offset-2 hover:text-foreground">
+            Email me directly
+          </a>
         </p>
       ) : null}
     </form>

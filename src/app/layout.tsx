@@ -5,7 +5,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { CursorFollower } from "@/components/ui/CursorFollower";
 import { site } from "@/data/site";
-import { EMAIL } from "@/lib/config";
+import { EMAIL, SITE_URL } from "@/lib/config";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Syne } from "next/font/google";
@@ -24,7 +24,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.siteUrl),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-lac-tau-4yahft4yj2.vercel.app"),
   title: {
     default: site.metadata.title,
     template: `%s — ${site.name}`,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   keywords: [...site.metadata.keywords],
   authors: [{ name: site.name, url: `mailto:${EMAIL}` }],
   alternates: {
-    canonical: site.siteUrl,
+    canonical: SITE_URL,
   },
   icons: {
     icon: [
@@ -47,13 +47,22 @@ export const metadata: Metadata = {
     description: site.metadata.description,
     type: "website",
     locale: "en_US",
-    url: site.siteUrl,
+    url: SITE_URL,
     siteName: site.name,
+    images: [
+      {
+        url: `${SITE_URL}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: site.metadata.title,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.metadata.title,
     description: site.metadata.description,
+    images: [`${SITE_URL}/twitter-image`],
   },
 };
 

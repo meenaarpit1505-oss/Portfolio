@@ -30,9 +30,8 @@ This guide documents the exact steps to deploy the portfolio to **Vercel** with 
    - **Install Command:** `npm install` (default)
 4. **Environment Variables:**
    Under **Environment Variables**, add:
-   - `CONTACT_WEBHOOK_URL`: Your Formspark, Zapier, Make, or custom webhook URL (e.g., `https://submit-form.com/your-form-id`).
    - `NEXT_PUBLIC_SITE_URL`: Your final live domain (e.g., `https://portfolio-lac-tau-4yahft4yj2.vercel.app`).
-   - `NEXT_PUBLIC_CALENDLY_URL`: Optional booking URL if you still use Calendly. The site CTA is “Email me” (e.g., `https://calendly.com/meenaarpit1505/intro`).
+   - `NEXT_PUBLIC_FORMSPREE_ID`: Formspree form ID (the `xyzabcde` in `https://formspree.io/f/xyzabcde`). If unset, the last form step opens a pre-filled mailto.
 5. Click **"Deploy"**. Vercel will build and provide an initial `*.vercel.app` preview URL.
 
 ---
@@ -105,6 +104,6 @@ Once your domain is live, update the canonical site URL to match your final doma
 - [ ] **DNS & SSL:** Visit `https://portfolio-lac-tau-4yahft4yj2.vercel.app` and check for the secure lock icon in browser.
 - [ ] **Redirect:** Visit `http://www.arpitmeena.dev` and confirm it redirects to `https://portfolio-lac-tau-4yahft4yj2.vercel.app`.
 - [ ] **Theme Toggle:** Click the Sun/Moon toggle in the header; verify smooth 300ms transition and persistent theme selection on page refresh.
-- [ ] **Contact Form:** Submit a test message on `/` and confirm receipt in your webhook inbox (`CONTACT_WEBHOOK_URL`).
+- [ ] **Contact Form:** Submit a test message on `/` and confirm receipt in Formspree (`NEXT_PUBLIC_FORMSPREE_ID`).
 - [ ] **Mobile & Tablet:** Verify layout across mobile, tablet, and desktop with zero horizontal scrolling.
 - [ ] **Email me:** Confirm the email CTA opens from the navbar and contact section.

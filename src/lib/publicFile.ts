@@ -17,3 +17,16 @@ export function fileExistsInPublic(relativePath: string): boolean {
     return false;
   }
 }
+
+export function isPlaceholderPublicImage(relativePath?: string): boolean {
+  if (typeof relativePath !== "string") return true;
+  const src = relativePath.trim().toLowerCase();
+  if (!src) return true;
+  return src.includes("placeholder") || src.includes("/_shared/") || src.endsWith(".svg");
+}
+
+export function isRenderableProjectImage(relativePath?: string): boolean {
+  if (typeof relativePath !== "string" || !relativePath.trim()) return false;
+  if (isPlaceholderPublicImage(relativePath)) return false;
+  return fileExistsInPublic(relativePath.trim());
+}

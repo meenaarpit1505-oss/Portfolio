@@ -1,5 +1,5 @@
 import { site } from "@/data/site";
-import { EMAIL, getSocialLinks } from "@/lib/config";
+import { EMAIL, SITE_URL, getSocialLinks } from "@/lib/config";
 
 export function PersonJsonLd() {
   const sameAs = getSocialLinks().map((link) => link.href);
@@ -9,7 +9,7 @@ export function PersonJsonLd() {
     name: site.name,
     jobTitle: "Framer Developer",
     email: `mailto:${EMAIL}`,
-    url: site.siteUrl,
+    url: SITE_URL,
     ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 

@@ -32,8 +32,8 @@ export interface Project {
   tags: string[];
   cover: string;
   heroImage: string;
-  beforeImage: string;
-  afterImage: string;
+  beforeImage?: string;
+  afterImage?: string;
   previewVideo?: string;
   client: string;
   role: string;

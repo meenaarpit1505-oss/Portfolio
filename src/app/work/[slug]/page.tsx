@@ -8,8 +8,8 @@ import { Container } from "@/components/ui/Container";
 import { BrowserFrame } from "@/components/work/BrowserFrame";
 import { VisitLiveButton } from "@/components/work/VisitLiveButton";
 import { getAdjacentProjects, getLiveHttpsUrl, getProject, projects } from "@/data/projects";
-import { site } from "@/data/site";
-import { fileExistsInPublic } from "@/lib/publicFile";
+import { SITE_URL } from "@/lib/config";
+import { isRenderableProjectImage } from "@/lib/publicFile";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -34,11 +34,11 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   return {
     title: project.seo.title,
     description: project.seo.description,
-    alternates: { canonical: `/work/${project.slug}` },
+    alternates: { canonical: `${SITE_URL}/work/${project.slug}` },
     openGraph: {
       title: project.seo.title,
       description: project.seo.description,
-      url: `${site.siteUrl}/work/${project.slug}`,
+      url: `${SITE_URL}/work/${project.slug}`,
       type: "article",
       images: [{ url: project.heroImage, width: 1200, height: 750, alt: project.title }],
     },
@@ -59,13 +59,20 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { previous, next } = getAdjacentProjects(project.slug);
   const liveUrl = getLiveHttpsUrl(project.liveUrl);
   const hasResults = Boolean(project.metrics || (project.results && project.results.length > 0));
+  const hasBeforeAfter = Boolean(
+    project.beforeImage &&
+      project.afterImage &&
+      isRenderableProjectImage(project.beforeImage) &&
+      isRenderableProjectImage(project.afterImage),
+  );
+  const galleryItems = project.gallery.filter((item) => isRenderableProjectImage(item.src));
   const toc: TocSection[] = [
     { id: "overview", label: "Overview" },
     ...(hasResults ? [{ id: "results", label: "Results" }] : []),
     { id: "challenge", label: "Challenge" },
     { id: "solution", label: "Solution" },
-    { id: "before-after", label: "Before / after" },
-    { id: "gallery", label: "Gallery" },
+    ...(hasBeforeAfter ? [{ id: "before-after", label: "Before / after" }] : []),
+    ...(galleryItems.length > 0 ? [{ id: "gallery", label: "Gallery" }] : []),
     ...(project.quote ? [{ id: "quote", label: "Quote" }] : []),
   ];
 
@@ -143,48 +150,43 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </dl>
             </section>
 
-            <section id="before-after" className="mt-14 scroll-mt-28">
-              <h2 className="font-display text-2xl font-semibold tracking-tight">Before / after</h2>
-              <div className="mt-6">
-                <BeforeAfterSlider
-                  beforeSrc={project.beforeImage}
-                  afterSrc={project.afterImage}
-                  beforeAlt={`${project.title} before`}
-                  afterAlt={`${project.title} after`}
-                />
-              </div>
-            </section>
+            {hasBeforeAfter && project.beforeImage && project.afterImage ? (
+              <section id="before-after" className="mt-14 scroll-mt-28">
+                <h2 className="font-display text-2xl font-semibold tracking-tight">Before / after</h2>
+                <div className="mt-6">
+                  <BeforeAfterSlider
+                    beforeSrc={project.beforeImage}
+                    afterSrc={project.afterImage}
+                    beforeAlt={`${project.title} before`}
+                    afterAlt={`${project.title} after`}
+                  />
+                </div>
+              </section>
+            ) : null}
 
-            <section id="gallery" className="mt-14 scroll-mt-28">
-              <h2 className="font-display text-2xl font-semibold tracking-tight">Gallery</h2>
-              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {project.gallery.map((item) => {
-                  const exists = fileExistsInPublic(item.src);
-                  return (
+            {galleryItems.length > 0 ? (
+              <section id="gallery" className="mt-14 scroll-mt-28">
+                <h2 className="font-display text-2xl font-semibold tracking-tight">Gallery</h2>
+                <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {galleryItems.map((item) => (
                     <figure key={item.src} className="flex flex-col gap-3">
                       <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-surface">
-                        {exists ? (
-                          <Image
-                            src={item.src}
-                            alt={item.alt}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full items-center justify-center text-sm text-muted">
-                            {item.alt}
-                          </div>
-                        )}
+                        <Image
+                          src={item.src}
+                          alt={item.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover"
+                        />
                       </div>
                       {item.caption ? (
                         <figcaption className="text-sm text-muted">{item.caption}</figcaption>
                       ) : null}
                     </figure>
-                  );
-                })}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             {project.quote ? (
               <section id="quote" className="mt-14 scroll-mt-28">

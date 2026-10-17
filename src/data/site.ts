@@ -1,4 +1,4 @@
-import { EMAIL } from "@/lib/config";
+import { EMAIL, SITE_URL } from "@/lib/config";
 
 export const site = {
   name: "Arpit Meena",
@@ -8,7 +8,7 @@ export const site = {
   email: EMAIL,
   location: "India",
   timezone: "IST (UTC+5:30)",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio-lac-tau-4yahft4yj2.vercel.app",
+  siteUrl: SITE_URL,
   availability: "Available for new projects",
   availabilityWindow: "Available for new projects · Nov 2026",
   socialProofLine: "Trusted by founders and agencies in 5+ countries",
