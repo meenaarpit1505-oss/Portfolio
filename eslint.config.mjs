@@ -12,11 +12,12 @@ const compat = new FlatCompat({
 const eslintConfig = [
   {
     ignores: [
-      "**/node_modules/**",
+      "node_modules/**",
       ".next/**",
       ".next-build/**",
       "out/**",
       "build/**",
+      "public/**",
       "next-env.d.ts",
     ],
   },

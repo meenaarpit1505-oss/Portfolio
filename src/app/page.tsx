@@ -1,38 +1,28 @@
-import React from "react";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { TransitionSection } from "@/components/sections/TransitionSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { WhatIDoSection } from "@/components/sections/WhatIDoSection";
-import { CareerSection } from "@/components/sections/CareerSection";
-import { WorkSection } from "@/components/sections/WorkSection";
-import { TechStackSection } from "@/components/sections/TechStackSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { ProcessSection } from "@/components/sections/ProcessSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { ToolsSection } from "@/components/sections/ToolsSection";
+import { WhySection } from "@/components/sections/WhySection";
+import { WorkSection } from "@/components/sections/WorkSection";
+import { LogoMarquee } from "@/components/proof/LogoMarquee";
 
 export default function Home() {
   return (
-    <main className="relative w-full">
-      {/* 1. Hero: Liquid Chrome Blob & Layered Giant Serif Headline */}
+    <main id="main">
       <HeroSection />
-
-      {/* 2. Transition: Particle Burst Zone */}
-      <TransitionSection />
-
-      {/* 3. About: 3D Avatar & Editorial Story */}
-      <AboutSection />
-
-      {/* 4. What I Do: Workstation Desk Rig & Dual Column Services */}
-      <WhatIDoSection />
-
-      {/* 5. Career: Scroll-drawn Timeline */}
-      <CareerSection />
-
-      {/* 6. Work: Selected Projects Gallery */}
+      <LogoMarquee />
       <WorkSection />
-
-      {/* 7. Tech Stack: Rapier Physics Playground */}
-      <TechStackSection />
-
-      {/* 8. Contact: Bold Outro, Email, Form & Footer */}
+      <ServicesSection />
+      <ProcessSection />
+      <WhySection />
+      <ToolsSection />
+      <TestimonialsSection />
+      <AboutSection />
+      <FaqSection />
       <ContactSection />
     </main>
   );

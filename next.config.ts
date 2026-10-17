@@ -3,14 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || ".next",
   reactStrictMode: true,
-  devIndicators: false,
-  transpilePackages: [
-    "three",
-    "@react-three/fiber",
-    "@react-three/drei",
-    "@react-three/postprocessing",
-    "@react-three/rapier",
-  ],
+  images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
 };
 
 export default nextConfig;

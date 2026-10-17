@@ -1,23 +1,22 @@
-import { MetadataRoute } from "next";
-import { content } from "@/data/content";
+import { projects } from "@/data/projects";
+import { site } from "@/data/site";
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = content.metadata.siteUrl;
-
-  const projectRoutes: MetadataRoute.Sitemap = content.projects.map((project) => ({
-    url: `${baseUrl}/work/${project.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
+  const lastModified = new Date();
 
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: site.siteUrl,
+      lastModified,
       changeFrequency: "weekly",
-      priority: 1.0,
+      priority: 1,
     },
-    ...projectRoutes,
+    ...projects.map((project) => ({
+      url: `${site.siteUrl}/work/${project.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }
