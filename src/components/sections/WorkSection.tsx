@@ -12,7 +12,7 @@ export function WorkSection() {
             id="work-heading"
             eyebrow="Selected work"
             title="Recent Framer projects"
-            description="Four Framer builds that show the kind of work I take on. Marked as placeholders until live clients are published."
+            description="Concept and personal Framer builds that show the kind of work I take on."
           />
         </Reveal>
         <div className="mt-10">

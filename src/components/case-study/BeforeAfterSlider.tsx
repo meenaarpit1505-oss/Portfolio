@@ -45,10 +45,10 @@ export function BeforeAfterSlider({
           style={{ left: `${position}%` }}
         />
         <span className="absolute left-3 top-3 z-10 rounded-full border border-border bg-background/80 px-2 py-0.5 text-[11px] text-muted">
-          Before · Placeholder
+          Before
         </span>
         <span className="absolute right-3 top-3 z-10 rounded-full border border-border bg-background/80 px-2 py-0.5 text-[11px] text-muted">
-          After · Placeholder
+          After
         </span>
       </div>
       <label className="block border-t border-border px-4 py-3 text-sm text-muted" htmlFor={sliderId}>

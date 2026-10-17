@@ -1,9 +1,8 @@
 import { AvailabilityBadge } from "@/components/contact/AvailabilityBadge";
+import { BookCallButton } from "@/components/contact/BookCallButton";
 import { CopyEmailButton } from "@/components/contact/CopyEmailButton";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { site } from "@/data/site";
 import { ContactForm } from "./ContactForm";
 
 export function ContactSection() {
@@ -26,10 +25,8 @@ export function ContactSection() {
             </p>
             <div className="mt-8 flex flex-col items-start gap-5">
               <AvailabilityBadge />
+              <BookCallButton>Email me about your project</BookCallButton>
               <CopyEmailButton />
-              <MagneticButton href={site.calendlyUrl} external>
-                Book a call
-              </MagneticButton>
             </div>
           </Reveal>
           <Reveal delay={0.08}>

@@ -31,8 +31,8 @@ This guide documents the exact steps to deploy the portfolio to **Vercel** with 
 4. **Environment Variables:**
    Under **Environment Variables**, add:
    - `CONTACT_WEBHOOK_URL`: Your Formspark, Zapier, Make, or custom webhook URL (e.g., `https://submit-form.com/your-form-id`).
-   - `NEXT_PUBLIC_SITE_URL`: Your final live domain (e.g., `https://arpitmeena.dev`).
-   - `NEXT_PUBLIC_CALENDLY_URL`: “Book a call” destination (e.g., `https://calendly.com/meenaarpit1505/intro`).
+   - `NEXT_PUBLIC_SITE_URL`: Your final live domain (e.g., `https://portfolio-lac-tau-4yahft4yj2.vercel.app`).
+   - `NEXT_PUBLIC_CALENDLY_URL`: Optional booking URL if you still use Calendly. The site CTA is “Email me” (e.g., `https://calendly.com/meenaarpit1505/intro`).
 5. Click **"Deploy"**. Vercel will build and provide an initial `*.vercel.app` preview URL.
 
 ---
@@ -88,7 +88,7 @@ Once your domain is live, update the canonical site URL to match your final doma
 
    ```ts
    export const site = {
-     siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://arpitmeena.dev",
+     siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio-lac-tau-4yahft4yj2.vercel.app",
      // ...
    };
    ```
@@ -96,15 +96,15 @@ Once your domain is live, update the canonical site URL to match your final doma
 2. This ensures:
    - `metadataBase` in `src/app/layout.tsx` resolves Open Graph and Twitter Card images correctly (`/og/og-image.png`).
    - `src/app/sitemap.ts` generates canonical XML sitemap URLs for all pages and case studies.
-   - `src/app/robots.ts` points web crawlers to `https://arpitmeena.dev/sitemap.xml`.
+   - `src/app/robots.ts` points web crawlers to `https://portfolio-lac-tau-4yahft4yj2.vercel.app/sitemap.xml`.
 
 ---
 
 ## 7. Post-Deployment Verification Checklist
 
-- [ ] **DNS & SSL:** Visit `https://arpitmeena.dev` and check for the secure lock icon in browser.
-- [ ] **Redirect:** Visit `http://www.arpitmeena.dev` and confirm it redirects to `https://arpitmeena.dev`.
+- [ ] **DNS & SSL:** Visit `https://portfolio-lac-tau-4yahft4yj2.vercel.app` and check for the secure lock icon in browser.
+- [ ] **Redirect:** Visit `http://www.arpitmeena.dev` and confirm it redirects to `https://portfolio-lac-tau-4yahft4yj2.vercel.app`.
 - [ ] **Theme Toggle:** Click the Sun/Moon toggle in the header; verify smooth 300ms transition and persistent theme selection on page refresh.
 - [ ] **Contact Form:** Submit a test message on `/` and confirm receipt in your webhook inbox (`CONTACT_WEBHOOK_URL`).
 - [ ] **Mobile & Tablet:** Verify layout across mobile, tablet, and desktop with zero horizontal scrolling.
-- [ ] **Book a call:** Confirm the Calendly URL opens from the navbar and contact section.
+- [ ] **Email me:** Confirm the email CTA opens from the navbar and contact section.

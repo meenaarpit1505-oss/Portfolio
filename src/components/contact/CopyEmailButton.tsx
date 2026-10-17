@@ -1,6 +1,6 @@
 "use client";
 
-import { site } from "@/data/site";
+import { EMAIL } from "@/lib/config";
 import { Check, Copy, Mail } from "lucide-react";
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ export function CopyEmailButton() {
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText(site.email);
+      await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -20,11 +20,11 @@ export function CopyEmailButton() {
   return (
     <div>
       <a
-        href={`mailto:${site.email}`}
+        href={`mailto:${EMAIL}`}
         className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent"
       >
         <Mail className="h-4 w-4" aria-hidden="true" />
-        {site.email}
+        {EMAIL}
       </a>
       <button
         type="button"

@@ -1,13 +1,16 @@
 "use client";
 
+import { ConceptBadge } from "@/components/ui/ConceptBadge";
 import { BrowserFrame } from "@/components/work/BrowserFrame";
 import { VisitLiveButton } from "@/components/work/VisitLiveButton";
 import { tween } from "@/lib/motion";
-import type { Project } from "@/data/projects";
+import { getLiveHttpsUrl, type Project } from "@/data/projects";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export function FeaturedProjectCard({ project }: { project: Project }) {
+  const liveUrl = getLiveHttpsUrl(project.liveUrl);
+
   return (
     <motion.article
       layout
@@ -24,11 +27,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-accent">
                 {project.category}
               </p>
-              {project.placeholder ? (
-                <span className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted">
-                  Placeholder
-                </span>
-              ) : null}
+              {project.concept ? <ConceptBadge /> : null}
             </div>
             <h3 className="mt-2 font-display text-3xl font-semibold tracking-tight">
               <Link
@@ -39,6 +38,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               </Link>
             </h3>
             <p className="mt-2 text-sm text-muted">{project.result}</p>
+            {project.metrics ? <p className="mt-1 text-sm text-muted">{project.metrics}</p> : null}
             <ul className="mt-3 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <li
@@ -50,7 +50,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               ))}
             </ul>
           </div>
-          {project.liveUrl ? <VisitLiveButton href={project.liveUrl} /> : null}
+          {liveUrl ? <VisitLiveButton href={liveUrl} /> : null}
         </div>
         <Link href={`/work/${project.slug}`} data-cursor="view" aria-label={`${project.title} case study`}>
           <BrowserFrame project={project} priority />

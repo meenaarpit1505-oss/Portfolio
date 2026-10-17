@@ -9,18 +9,19 @@ import { ToolsSection } from "@/components/sections/ToolsSection";
 import { WhySection } from "@/components/sections/WhySection";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { LogoMarquee } from "@/components/proof/LogoMarquee";
+import { SHOW_LOGOS, SHOW_TESTIMONIALS } from "@/lib/config";
 
 export default function Home() {
   return (
     <main id="main">
       <HeroSection />
-      <LogoMarquee />
+      {SHOW_LOGOS ? <LogoMarquee /> : null}
       <WorkSection />
       <ServicesSection />
       <ProcessSection />
       <WhySection />
       <ToolsSection />
-      <TestimonialsSection />
+      {SHOW_TESTIMONIALS ? <TestimonialsSection /> : null}
       <AboutSection />
       <FaqSection />
       <ContactSection />

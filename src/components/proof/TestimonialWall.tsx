@@ -27,17 +27,11 @@ export function TestimonialWall() {
             id="testimonials-heading"
             eyebrow="Testimonials"
             title="What collaborators say"
-            description="These quotes are placeholders so the layout is ready. Replace them with real clients before launch."
           />
         </Reveal>
 
         <figure className="mt-10 rounded-xl border border-border bg-surface p-6 shadow-card sm:p-10">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <Stars />
-            <span className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted">
-              Placeholder
-            </span>
-          </div>
+          <Stars />
           <blockquote className="mt-5 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
             “{featured.quote}”
           </blockquote>
@@ -64,12 +58,7 @@ export function TestimonialWall() {
               key={item.name}
               className="mb-4 break-inside-avoid rounded-xl border border-border bg-surface p-5"
             >
-              <div className="flex items-center justify-between gap-3">
-                <Stars />
-                <span className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted">
-                  Placeholder
-                </span>
-              </div>
+              <Stars />
               <blockquote className="mt-4 text-sm leading-relaxed text-muted">
                 “{item.quote}”
               </blockquote>

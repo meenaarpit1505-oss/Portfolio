@@ -1,5 +1,3 @@
-import { MagneticButton } from "@/components/ui/MagneticButton";
-
 export function VisitLiveButton({
   href,
   className = "",
@@ -8,8 +6,14 @@ export function VisitLiveButton({
   className?: string;
 }) {
   return (
-    <MagneticButton href={href} external className={className}>
-      Visit live site
-    </MagneticButton>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cursor="button"
+      className={`inline-flex min-h-11 items-center justify-center rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className}`}
+    >
+      Visit live site ↗
+    </a>
   );
 }

@@ -120,6 +120,17 @@ export function MagneticButton({
     );
   }
 
+  const isHashLink = href.startsWith("#") || href.startsWith("/#");
+  const isMailto = href.startsWith("mailto:");
+
+  if (isHashLink || isMailto) {
+    return (
+      <motion.a href={href} data-cursor="button" className={classNames} style={motionStyle} {...pointerProps}>
+        {content}
+      </motion.a>
+    );
+  }
+
   return (
     <MotionLink href={href} data-cursor="button" className={classNames} style={motionStyle} {...pointerProps}>
       {content}

@@ -1,15 +1,14 @@
+import { EMAIL } from "@/lib/config";
+
 export const site = {
   name: "Arpit Meena",
   firstName: "Arpit",
   monogram: "AM",
   role: "Framer Developer",
-  email: "meenaarpit1505@gmail.com",
+  email: EMAIL,
   location: "India",
   timezone: "IST (UTC+5:30)",
-  calendlyUrl:
-    process.env.NEXT_PUBLIC_CALENDLY_URL ||
-    "https://calendly.com/meenaarpit1505/intro",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://arpitmeena.dev",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio-lac-tau-4yahft4yj2.vercel.app",
   availability: "Available for new projects",
   availabilityWindow: "Available for new projects · Nov 2026",
   socialProofLine: "Trusted by founders and agencies in 5+ countries",
@@ -24,26 +23,10 @@ export const site = {
     { label: "About", href: "/#about" },
     { label: "Contact", href: "/#contact" },
   ],
-  socials: [
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/arpit-meena",
-    },
-    { label: "X", href: "https://x.com/arpitmeena" },
-    {
-      label: "GitHub",
-      href: "https://github.com/meenaarpit1505-oss",
-    },
-    { label: "Contra", href: "https://contra.com/arpitmeena" },
-    {
-      label: "Framer Marketplace",
-      href: "https://www.framer.com/marketplace/",
-    },
-  ],
   metadata: {
     title: "Arpit Meena — Framer Developer",
     description:
-      "Framer developer helping startups, agencies, and creators launch fast, SEO-ready websites that convert. Figma to Framer, in days not weeks.",
+      "Framer developer building fast, conversion-focused websites for startups, agencies, and creators. Figma to a live, CMS-ready site in days — not weeks.",
     keywords: [
       "Framer developer",
       "Framer designer",
@@ -60,8 +43,8 @@ export const site = {
       "I'm a freelance web developer based in India, working remotely since 2024. I focus on Framer and modern frontend — taking Figma files (or a rough brief) and turning them into live, editable websites.",
       "I care about clean structure, fast loads, and making sure you can update the site yourself after launch. Most of my work is landing pages, marketing sites, and reusable Framer systems for startups, agencies, and independent creators.",
     ],
-    photo: "/about/portrait.svg",
-    photoAlt: "Portrait placeholder for Arpit Meena",
+    photo: "/arpit.jpg",
+    photoAlt: "Portrait of Arpit Meena",
     facts: [
       { label: "Based in", value: "India · IST" },
       { label: "Working since", value: "2024" },

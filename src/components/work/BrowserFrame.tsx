@@ -1,7 +1,7 @@
 "use client";
 
 import { useHoverFocus } from "@/hooks/useHoverFocus";
-import type { Project } from "@/data/projects";
+import { getLiveDomain, type Project } from "@/data/projects";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useMemo, useRef } from "react";
@@ -22,6 +22,7 @@ export function BrowserFrame({
     [project],
   );
   const shouldScroll = Boolean((hovered || inView) && enhance && !reduceMotion);
+  const liveDomain = getLiveDomain(project);
 
   return (
     <div
@@ -35,9 +36,11 @@ export function BrowserFrame({
           <span className="h-2.5 w-2.5 rounded-full bg-[#ffd93d]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#6bcb77]" />
         </div>
-        <p className="min-w-0 flex-1 truncate rounded-md border border-border bg-background px-3 py-1 text-xs text-muted">
-          {project.liveDomain}
-        </p>
+        {liveDomain ? (
+          <p className="min-w-0 flex-1 truncate rounded-md border border-border bg-background px-3 py-1 text-xs text-muted">
+            {liveDomain}
+          </p>
+        ) : null}
       </div>
       <div className="relative aspect-[16/10] overflow-hidden bg-surface-hover">
         <motion.div

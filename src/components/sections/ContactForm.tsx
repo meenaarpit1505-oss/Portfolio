@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { budgetOptions, projectTypeOptions, timelineOptions } from "@/data/site";
+import { EMAIL } from "@/lib/config";
 import { tween } from "@/lib/motion";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState, type FormEvent } from "react";
@@ -107,7 +108,7 @@ export function ContactForm() {
       form.reset();
     } catch {
       setStatus("error");
-      setMessage("Network error. Please email meenaarpit1505@gmail.com.");
+      setMessage(`Network error. Please email ${EMAIL}.`);
     }
   }
 

@@ -10,7 +10,7 @@ export default function NotFound() {
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-accent">404</p>
           <h1 className="mt-4 font-display text-display font-semibold">Page not found</h1>
           <p className="mt-4 text-base text-muted">
-            That URL doesn’t exist. Head home or browse selected work.
+            That URL doesn&rsquo;t exist. Head home or browse selected work.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <ButtonLink href="/">Go home</ButtonLink>

@@ -1,12 +1,14 @@
 "use client";
 
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import { site } from "@/data/site";
+import { BookCallButton } from "@/components/contact/BookCallButton";
+import { tween } from "@/lib/motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function MobileCtaBar() {
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -32,13 +34,19 @@ export function MobileCtaBar() {
     };
   }, [pathname]);
 
-  if (!visible) return null;
-
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 p-3 backdrop-blur-md md:hidden">
-      <MagneticButton href={site.calendlyUrl} external className="w-full">
-        Book a call
-      </MagneticButton>
-    </div>
+    <motion.div
+      initial={false}
+      animate={{ y: visible ? 0 : "100%" }}
+      transition={reduceMotion ? { duration: 0 } : tween.slow}
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 px-3 pt-3 backdrop-blur-md md:hidden ${
+        visible ? "" : "pointer-events-none"
+      }`}
+      style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+      aria-hidden={!visible}
+      {...(!visible ? { inert: true } : {})}
+    >
+      <BookCallButton className="w-full">Email me</BookCallButton>
+    </motion.div>
   );
 }

@@ -1,3 +1,4 @@
+import { EMAIL } from "@/lib/config";
 import { NextResponse } from "next/server";
 
 // In-memory sliding window rate limiter per IP address
@@ -161,7 +162,7 @@ export async function POST(request: Request) {
     if (!webhookUrl || !webhookUrl.startsWith("http")) {
       return NextResponse.json(
         {
-          error: "Form service unavailable. Please email directly.",
+          error: `Form service unavailable. Please email ${EMAIL}.`,
           unavailable: true,
         },
         { status: 503 }
@@ -186,7 +187,7 @@ export async function POST(request: Request) {
         return NextResponse.json(
           {
             error:
-              "Failed to deliver message via contact webhook. Please email directly.",
+              `Failed to deliver message via contact webhook. Please email ${EMAIL}.`,
           },
           { status: 502 }
         );
@@ -196,7 +197,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error:
-            "Network failure communicating with contact webhook. Please email directly.",
+            `Network failure communicating with contact webhook. Please email ${EMAIL}.`,
         },
         { status: 502 }
       );

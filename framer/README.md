@@ -12,7 +12,7 @@ Rebuild this Next.js site in Framer by matching each `/src/components/sections` 
 
 | Next.js component | Framer layout | Components to make | CMS |
 | :--- | :--- | :--- | :--- |
-| `Navbar` | Horizontal stack, sticky, 72px | Logo, Nav links, Theme toggle, Book a call button, Mobile menu | — |
+| `Navbar` | Horizontal stack, sticky, 72px | Logo, Nav links, Theme toggle, Email me button, Mobile menu | — |
 | `HeroSection` | Vertical stack, centered | Availability badge, H1, subtext, Button group, Trust row | — |
 | `WorkSection` | 2-column grid | Project card (cover, category, title, result, tags) | **Projects** |
 | `ServicesSection` | 3-column grid / wrap | Service card (icon, title, description, price) | Optional |
@@ -22,7 +22,7 @@ Rebuild this Next.js site in Framer by matching each `/src/components/sections` 
 | `TestimonialsSection` | 3-column grid | Quote card (photo, name, role, quote, placeholder badge) | **Testimonials** |
 | `AboutSection` | 2-column (copy + image) | Bio stack, fact chips, portrait | — |
 | `FaqSection` | Vertical stack / accordion | FAQ item | **FAQ** |
-| `ContactSection` | 2-column | Heading stack, email, Book a call, Form | — |
+| `ContactSection` | 2-column | Heading stack, email, Email me, Form | — |
 | `Footer` | Horizontal stack | Social icons, copyright, Back to top | — |
 | `/work/[slug]` | Article stack | Hero image, meta grid, Challenge, Built, Results, Gallery, pagination | **Projects** |
 

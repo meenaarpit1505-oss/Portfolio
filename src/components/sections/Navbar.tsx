@@ -1,7 +1,7 @@
 "use client";
 
+import { BookCallButton } from "@/components/contact/BookCallButton";
 import { AnimatedNavLinks } from "@/components/ui/AnimatedNavLinks";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { site } from "@/data/site";
@@ -61,9 +61,7 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <div className="hidden sm:block">
-              <MagneticButton href={site.calendlyUrl} external>
-                Book a call
-              </MagneticButton>
+              <BookCallButton>Email me</BookCallButton>
             </div>
             <button
               type="button"
@@ -102,9 +100,7 @@ export function Navbar() {
                     {item.label}
                   </Link>
                 ))}
-                <MagneticButton href={site.calendlyUrl} external className="mt-2 w-full">
-                  Book a call
-                </MagneticButton>
+                <BookCallButton className="mt-2 w-full">Email me</BookCallButton>
               </nav>
             </Container>
           </motion.div>

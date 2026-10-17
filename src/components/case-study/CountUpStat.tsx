@@ -40,9 +40,6 @@ export function CountUpStat({ metric }: { metric: ProjectMetric }) {
         {metric.suffix ?? ""}
       </p>
       <p className="mt-1 text-sm text-muted">{metric.label}</p>
-      {metric.placeholder ? (
-        <p className="mt-2 text-[11px] uppercase tracking-[0.12em] text-muted">Placeholder</p>
-      ) : null}
     </div>
   );
 }

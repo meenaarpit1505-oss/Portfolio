@@ -34,7 +34,7 @@ export function BentoWorkGrid() {
         </div>
       </LayoutGroup>
       {items.length === 0 ? (
-        <p className="mt-8 text-sm text-muted">No placeholder projects in this category yet.</p>
+        <p className="mt-8 text-sm text-muted">No projects in this category yet.</p>
       ) : null}
     </div>
   );

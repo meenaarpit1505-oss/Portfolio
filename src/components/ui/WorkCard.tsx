@@ -1,5 +1,6 @@
 "use client";
 
+import { ConceptBadge } from "@/components/ui/ConceptBadge";
 import { useHoverFocus } from "@/hooks/useHoverFocus";
 import { cardLift, imageZoom, tween } from "@/lib/motion";
 import type { Project } from "@/data/projects";
@@ -75,16 +76,13 @@ export function WorkCard({
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-accent">
               {project.category}
             </p>
-            {project.placeholder ? (
-              <span className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted">
-                Placeholder
-              </span>
-            ) : null}
+            {project.concept ? <ConceptBadge /> : null}
           </div>
           <h3 className="font-display text-2xl font-semibold tracking-tight">
             {project.title}
           </h3>
           <p className="text-sm text-muted">{project.result}</p>
+          {project.metrics ? <p className="text-sm text-muted">{project.metrics}</p> : null}
           <ul className="mt-1 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <li

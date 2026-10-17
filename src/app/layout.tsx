@@ -2,8 +2,10 @@ import { MotionProvider } from "@/components/providers/MotionProvider";
 import { MobileCtaBar } from "@/components/contact/MobileCtaBar";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
+import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { CursorFollower } from "@/components/ui/CursorFollower";
 import { site } from "@/data/site";
+import { EMAIL } from "@/lib/config";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Syne } from "next/font/google";
@@ -29,12 +31,15 @@ export const metadata: Metadata = {
   },
   description: site.metadata.description,
   keywords: [...site.metadata.keywords],
-  authors: [{ name: site.name }],
+  authors: [{ name: site.name, url: `mailto:${EMAIL}` }],
   alternates: {
-    canonical: "/",
+    canonical: site.siteUrl,
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", sizes: "any" },
+    ],
     apple: "/icon.svg",
   },
   openGraph: {
@@ -60,6 +65,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -97,6 +103,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased selection:bg-accent/30">
+        <PersonJsonLd />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
