@@ -97,7 +97,7 @@ export default function RootLayout({
                 try {
                   var saved = localStorage.getItem('portfolio-theme');
                   var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var theme = saved === 'light' || saved === 'dark' ? saved : (prefersDark ? 'dark' : 'light');
+                  var theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
                   var root = document.documentElement;
                   root.classList.remove('dark', 'light');
                   root.classList.add(theme);

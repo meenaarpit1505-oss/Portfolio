@@ -18,7 +18,7 @@ export function ToolsSection() {
         </Reveal>
         <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
           {tools.map((tool) => (
-            <li key={tool.name}>
+            <li key={tool.name} className="tool-cell rounded-xl border border-border bg-surface p-3">
               <ToolLogo name={tool.name} logo={tool.logo} />
             </li>
           ))}

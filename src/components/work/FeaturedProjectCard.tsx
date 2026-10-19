@@ -20,7 +20,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
       exit={{ opacity: 0, y: 8 }}
       transition={tween.slow}
     >
-      <div className="overflow-hidden rounded-xl border border-border bg-surface p-4 shadow-card sm:p-6">
+      <div className="project-card overflow-hidden rounded-xl border border-border bg-surface p-4 shadow-card sm:p-6">
         <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="flex items-center gap-2">

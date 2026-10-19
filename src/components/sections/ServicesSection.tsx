@@ -60,7 +60,7 @@ export function ServicesSection() {
               <Reveal key={service.id} delay={index * 0.05}>
                 <SpotlightCard
                   label={service.title}
-                  className="card-lift flex h-full flex-col rounded-xl border border-border bg-surface p-6 shadow-card"
+                  className="service-tier card-lift flex h-full flex-col rounded-xl border border-border bg-surface p-6 shadow-card"
                 >
                   <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-background text-accent">
                     <Icon className="h-5 w-5" aria-hidden="true" />

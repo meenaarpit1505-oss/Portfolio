@@ -33,7 +33,8 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  const isLight = theme === "light";
+  const isDarkMode = theme === "dark";
+  const isLight = !isDarkMode;
 
   return (
     <button
