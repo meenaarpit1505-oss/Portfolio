@@ -19,7 +19,7 @@ export function ProcessSection() {
           {processSteps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.05}>
               <li className="relative h-full rounded-xl border border-border bg-surface p-6">
-                <p className="font-display text-sm font-semibold text-accent">{step.number}</p>
+                <p className="process-node font-display text-sm font-semibold text-accent"><span>{step.number}</span></p>
                 <h3 className="mt-3 font-display text-xl font-semibold tracking-tight">
                   {step.title}
                 </h3>

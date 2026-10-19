@@ -9,6 +9,7 @@ export function HeroSection() {
   return (
     <section id="hero" className="relative isolate overflow-hidden pb-20 pt-32 sm:pb-28 sm:pt-40 lg:pb-36 lg:pt-48">
       <div aria-hidden="true" className="mesh-bg pointer-events-none absolute inset-0 -z-10 opacity-80" />
+      <div aria-hidden="true" className="hero-spotlight pointer-events-none absolute left-1/2 top-44 -z-10 h-72 w-[min(900px,90vw)] -translate-x-1/2 rounded-full blur-3xl" />
       <div aria-hidden="true" className="float-orb pointer-events-none absolute -left-24 top-28 -z-10 size-72 rounded-full bg-cyan-400/15 blur-3xl" />
       <div aria-hidden="true" className="float-orb pointer-events-none absolute right-[-8rem] top-12 -z-10 size-96 rounded-full bg-fuchsia-500/15 blur-3xl [animation-delay:-3s]" />
       <Container>
