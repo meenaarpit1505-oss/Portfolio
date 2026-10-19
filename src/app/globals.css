@@ -4,33 +4,35 @@
 
 :root,
 html.dark {
-  --color-bg: #0b0b0c;
-  --color-fg: #f4f4f5;
-  --color-muted: #a1a1aa;
-  --color-surface: #141416;
-  --color-surface-hover: #1b1b1e;
-  --color-accent: #7c9cff;
-  --color-accent-strong: #5b7cff;
-  --color-on-accent: #0b0b0c;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-hover: rgba(255, 255, 255, 0.22);
-  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.28);
-  --shadow-lift: 0 16px 40px rgba(0, 0, 0, 0.36);
+  --color-bg: #09090b;
+  --color-fg: #f7f7fb;
+  --color-muted: #a8a8b5;
+  --color-surface: rgba(20, 20, 27, 0.72);
+  --color-surface-hover: rgba(30, 30, 42, 0.9);
+  --color-accent: #00d2ff;
+  --color-accent-strong: #009dff;
+  --color-pink: #ff007f;
+  --color-on-accent: #06070a;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-hover: rgba(0, 210, 255, 0.5);
+  --shadow-card: 0 18px 60px rgba(0, 0, 0, 0.3);
+  --shadow-lift: 0 24px 70px rgba(0, 0, 0, 0.46), 0 0 36px rgba(0, 210, 255, 0.12);
 }
 
 html.light {
-  --color-bg: #fafafa;
-  --color-fg: #111113;
-  --color-muted: #52525b;
-  --color-surface: #ffffff;
-  --color-surface-hover: #f4f4f5;
-  --color-accent: #2f5de8;
-  --color-accent-strong: #244cd0;
+  --color-bg: #ffffff;
+  --color-fg: #111326;
+  --color-muted: #596073;
+  --color-surface: rgba(255, 255, 255, 0.78);
+  --color-surface-hover: #ffffff;
+  --color-accent: #1857d8;
+  --color-accent-strong: #0d3eaf;
+  --color-pink: #c40068;
   --color-on-accent: #ffffff;
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-border-hover: rgba(0, 0, 0, 0.18);
-  --shadow-card: 0 12px 32px rgba(17, 17, 19, 0.06);
-  --shadow-lift: 0 16px 40px rgba(17, 17, 19, 0.1);
+  --color-border: rgba(24, 36, 74, 0.12);
+  --color-border-hover: rgba(24, 87, 216, 0.4);
+  --shadow-card: 0 18px 50px rgba(31, 52, 112, 0.08);
+  --shadow-lift: 0 24px 70px rgba(31, 52, 112, 0.14);
 }
 
 :root {
@@ -129,12 +131,30 @@ body {
 }
 
 .card-lift {
-  transition:
-    transform 280ms ease,
-    box-shadow 280ms ease,
-    border-color 280ms ease,
-    background-color 280ms ease;
+  background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 32%, transparent), color-mix(in srgb, var(--color-pink) 24%, transparent)) border-box;
+  border: 1px solid transparent;
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out, border-color 300ms ease-out, background-color 300ms ease-out;
 }
+
+.gradient-text {
+  background: linear-gradient(110deg, var(--color-accent) 0%, #8ceaff 35%, var(--color-pink) 82%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mesh-bg {
+  background-image: radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 28%), radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--color-pink) 16%, transparent), transparent 30%), linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -16px, 0) scale(1.04); }
+} 
+
+.float-orb { animation: float-orb 8s ease-in-out infinite; }
 
 @media (hover: hover) and (pointer: fine) {
   .card-lift:hover {

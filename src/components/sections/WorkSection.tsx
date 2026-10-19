@@ -11,8 +11,8 @@ export function WorkSection() {
           <SectionHeading
             id="work-heading"
             eyebrow="Selected work"
-            title="Recent Framer projects"
-            description="Concept and personal Framer builds that show the kind of work I take on."
+            title="Selected work, built to move"
+            description="A curated set of digital experiences where strategy, systems, and sharp interaction design meet."
           />
         </Reveal>
         <div className="mt-10">
