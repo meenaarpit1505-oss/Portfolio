@@ -44,7 +44,7 @@ export function Navbar() {
       }`}
     >
       <Container>
-        <div className="flex h-16 items-center justify-between gap-4 lg:h-[72px]">
+          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 rounded-b-2xl border-x border-b border-border/70 bg-background/60 px-4 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl lg:h-[72px] lg:px-5">
           <Link
             href="/"
             className="flex items-center gap-3 rounded-md text-foreground"
