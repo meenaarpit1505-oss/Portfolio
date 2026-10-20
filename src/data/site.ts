@@ -24,9 +24,9 @@ export const site = {
     { label: "Contact", href: "/#contact" },
   ],
   metadata: {
-    title: "Arpit Meena — Framer Developer",
+    title: "Arpit Meena — Neon Digital Partner",
     description:
-      "Framer developer building fast, conversion-focused websites for startups, agencies, and creators. Figma to a live, CMS-ready site in days — not weeks.",
+      "An ultra-premium neon-minimalist portfolio for fast, conversion-focused Framer and frontend experiences.",
     keywords: [
       "Framer developer",
       "Framer designer",
