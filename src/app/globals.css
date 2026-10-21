@@ -1,4 +1,16 @@
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.portfolio-shell.light-mode {
+  color-scheme: light;
+}
+
 .portfolio-shell.light-mode .bg-black\/75,
 .portfolio-shell.light-mode .bg-zinc-950\/95,
 .portfolio-shell.light-mode .bg-zinc-950\/75,
