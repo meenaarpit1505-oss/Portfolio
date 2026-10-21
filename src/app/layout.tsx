@@ -1,7 +1,4 @@
 import { MotionProvider } from "@/components/providers/MotionProvider";
-import { MobileCtaBar } from "@/components/contact/MobileCtaBar";
-import { Footer } from "@/components/sections/Footer";
-import { Navbar } from "@/components/sections/Navbar";
 import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { CursorFollower } from "@/components/ui/CursorFollower";
 import { site } from "@/data/site";
@@ -117,10 +114,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <MotionProvider>
-          <Navbar />
           {children}
-          <Footer />
-          <MobileCtaBar />
           <CursorFollower />
         </MotionProvider>
       </body>
